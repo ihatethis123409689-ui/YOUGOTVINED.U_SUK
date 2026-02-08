@@ -1,0 +1,56 @@
+✅ GITHUB DEPLOYMENT CHECKLIST
+================================
+
+Before you start:
+□ All files downloaded to one folder
+□ Git installed (https://git-scm.com/)
+□ GitHub account created (https://github.com/)
+
+Method 1 - GitHub Desktop (Recommended):
+□ Download GitHub Desktop (https://desktop.github.com/)
+□ Sign in with GitHub account
+□ Click File → Add Local Repository
+□ Select your project folder
+□ Click "Create Repository"
+□ Type commit message: "Initial commit"
+□ Click "Commit to main"
+□ Click "Publish repository"
+□ Name it: "you-got-vined"
+□ Click "Publish Repository"
+✅ DONE! Your repo is live!
+
+Method 2 - Command Line:
+□ Open terminal/command prompt
+□ Navigate to project folder: cd path/to/folder
+□ Run: git init
+□ Run: git add .
+□ Run: git commit -m "Initial commit"
+□ Create new repo on GitHub.com
+□ Copy the repo URL
+□ Run: git remote add origin YOUR_URL
+□ Run: git branch -M main
+□ Run: git push -u origin main
+✅ DONE! Your repo is live!
+
+After upload:
+□ Add topics on GitHub: vine, video-sharing, nodejs
+□ Share your repo link
+□ Accept stars and feedback!
+
+Your repo will be at:
+https://github.com/YOUR_USERNAME/you-got-vined
+
+Others can use it with:
+git clone YOUR_REPO_URL
+cd you-got-vined
+npm install
+npm start
+(then open yougotvined-divine.html)
+
+TROUBLESHOOTING:
+- "git command not found" → Install Git
+- "permission denied" → Use HTTPS URL instead of SSH
+- Want to restart? → Delete .git folder and start over
+
+NEED MORE HELP?
+Read: GITHUB-DEPLOYMENT.md

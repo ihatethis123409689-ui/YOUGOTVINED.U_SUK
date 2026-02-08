@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Got Vined - 6-Second Looping Videos</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand-primary: #27C58B;
+            --brand-dark: #07241B;
+            --brand-light: #F9F7F6;
+            --text-primary: #09090b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--brand-light);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--brand-primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--brand-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--brand-primary);
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: var(--radius);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--brand-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #22a874;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: #f8fafc;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Upload Section */
+        .upload-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--brand-dark);
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .upload-area:hover {
+            border-color: var(--brand-primary);
+            background: #f0fdf9;
+        }
+
+        .upload-area input {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .upload-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .upload-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        /* Feed */
+        .feed-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            background: white;
+            padding: 1rem;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .feed-tab {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .feed-tab.active {
+            color: var(--brand-primary);
+            border-bottom-color: var(--brand-primary);
+        }
+
+        .feed-tab:hover {
+            color: var(--text-primary);
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            aspect-ratio: 9/16;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .video-thumbnail video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .video-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--brand-primary);
+        }
+
+        .video-info {
+            padding: 1rem;
+        }
+
+        .video-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .author-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--brand-primary), #22a874);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .author-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .author-time {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .video-caption {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .video-stats {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stat-icon {
+            font-size: 1.1rem;
+        }
+
+        /* Recording Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--brand-dark);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            padding: 0.25rem;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .recording-preview {
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            aspect-ratio: 9/16;
+        }
+
+        .recording-preview video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .timer {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            margin-bottom: 1.5rem;
+            font-family: 'Bricolage Grotesque', sans-serif;
+        }
+
+        .timer.recording {
+            color: #ef4444;
+        }
+
+        .recording-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .notification {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            z-index: 2000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .notification.show {
+            display: flex;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-verified {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-original {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-no-ai {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        /* Video Player Modal */
+        .video-player-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-player-modal.active {
+            display: flex;
+        }
+
+        .video-player-container {
+            position: relative;
+            max-width: 500px;
+            width: 90%;
+            aspect-ratio: 9/16;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .video-player-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .player-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+        }
+
+        .player-close:hover {
+            background: white;
+        }
+
+        .player-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 3rem 1.5rem 1.5rem;
+            color: white;
+        }
+
+        .player-caption {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .player-actions {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .player-action {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            transition: transform 0.2s;
+        }
+
+        .player-action:hover {
+            transform: scale(1.1);
+        }
+
+        .player-action-icon {
+            font-size: 1.8rem;
+        }
+
+        /* Filter Controls */
+        .filter-controls {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .filter-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--brand-primary);
+        }
+
+        .filter-label:hover {
+            color: var(--brand-primary);
+        }
+
+        .upload-progress {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f0fdf9;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .upload-progress.active {
+            display: block;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--brand-primary);
+            transition: width 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .feed-header {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .feed-header::-webkit-scrollbar {
+                display: none;
+            }
+
+            .video-player-container {
+                width: 100%;
+                max-width: 100%;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">🎬</div>
+                <span>You Got Vined</span>
+            </a>
+            <nav class="nav">
+                <a href="#" class="nav-link">Discover</a>
+                <a href="#" class="nav-link">Trending</a>
+                <a href="#" class="nav-link">Following</a>
+                <button class="btn btn-primary" onclick="openUpload()">+ Upload Vine</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Upload Card -->
+        <div class="upload-card">
+            <h2 class="upload-title">Share Your 6-Second Moment</h2>
+            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <input type="file" id="fileInput" accept="video/*">
+                <div class="upload-icon">📹</div>
+                <div class="upload-text">Drop your video here or click to browse</div>
+                <div class="upload-hint">Max 6 seconds • MP4, MOV, WebM supported</div>
+            </div>
+            <div class="upload-actions">
+                <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()">
+                    📁 Choose File
+                </button>
+                <button class="btn btn-primary" onclick="openRecording()">
+                    🔴 Record Live
+                </button>
+            </div>
+        </div>
+
+        <!-- Feed Tabs -->
+        <div class="feed-header">
+            <button class="feed-tab active" onclick="switchTab(this, 'trending')">🔥 Trending</button>
+            <button class="feed-tab" onclick="switchTab(this, 'new')">✨ New</button>
+            <button class="feed-tab" onclick="switchTab(this, 'top')">🏆 Top</button>
+            <button class="feed-tab" onclick="switchTab(this, 'following')">👥 Following</button>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filter-controls">
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                <label class="filter-label">
+                    <input type="checkbox" id="noAiFilter" onchange="applyFilters()">
+                    <span>🚫 No AI Content</span>
+                </label>
+                <label class="filter-label">
+                    <input type="checkbox" id="verifiedOnlyFilter" onchange="applyFilters()">
+                    <span>✓ Verified Only</span>
+                </label>
+            </div>
+            <div style="color: var(--text-secondary); font-size: 0.875rem;">
+                <span id="videoCount">Showing all videos</span>
+            </div>
+        </div>
+
+        <div class="upload-progress" id="uploadProgress">
+            <div style="font-weight: 600; margin-bottom: 0.5rem;">Uploading your vine...</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Video Grid -->
+        <div class="video-grid" id="videoGrid">
+            <!-- Sample Videos -->
+            <div class="video-card" data-verified="true" data-no-ai="true" onclick="playVideoModal(this)">
+                <div class="video-thumbnail">
+                    <div class="video-placeholder">🎭</div>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-author">
+                        <div class="author-avatar">VG</div>
+                        <div>
+                            <div class="author-name">
+                                @vinegod 
+                                <span class="badge badge-verified">✓</span>
+                                <span class="badge badge-no-ai">🚫 No AI</span>
+                            </div>
+                            <div class="author-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="video-caption">When you realize it's Friday 🎉 #TGIF #vibes</div>
+                    <div class="video-stats">
+                        <span class="stat">
+                            <span class="stat-icon">❤️</span>
+                            <span>12.5K</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">💬</span>
+                            <span>342</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">🔄</span>
+                            <span>1.2K</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card" data-verified="false" data-no-ai="false" onclick="playVideoModal(this)">
+                <div class="video-thumbnail">
+                    <div class="video-placeholder">🤣</div>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-author">
+                        <div class="author-avatar">ML</div>
+                        <div>
+                            <div class="author-name">@memeslord</div>
+                            <div class="author-time">5 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="video-caption">POV: Explaining memes to your parents 😂 #relatable</div>
+                    <div class="video-stats">
+                        <span class="stat">
+                            <span class="stat-icon">❤️</span>
+                            <span>8.9K</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">💬</span>
+                            <span>234</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">🔄</span>
+                            <span>892</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card" data-verified="false" data-no-ai="true" onclick="playVideoModal(this)">
+                <div class="video-thumbnail">
+                    <div class="video-placeholder">🐾</div>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-author">
+                        <div class="author-avatar">PC</div>
+                        <div>
+                            <div class="author-name">
+                                @petcircus 
+                                <span class="badge badge-original">🎨 Original</span>
+                                <span class="badge badge-no-ai">🚫 No AI</span>
+                            </div>
+                            <div class="author-time">1 day ago</div>
+                        </div>
+                    </div>
+                    <div class="video-caption">My cat thinks he's a dog 🐱🐕 #pets #funny</div>
+                    <div class="video-stats">
+                        <span class="stat">
+                            <span class="stat-icon">❤️</span>
+                            <span>21.3K</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">💬</span>
+                            <span>567</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">🔄</span>
+                            <span>3.4K</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card" data-verified="false" data-no-ai="true" onclick="playVideoModal(this)">
+                <div class="video-thumbnail">
+                    <div class="video-placeholder">🎵</div>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-author">
+                        <div class="author-avatar">MV</div>
+                        <div>
+                            <div class="author-name">
+                                @musicvibes
+                                <span class="badge badge-no-ai">🚫 No AI</span>
+                            </div>
+                            <div class="author-time">3 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="video-caption">Beat drop hits different 🎶 #music #dj</div>
+                    <div class="video-stats">
+                        <span class="stat">
+                            <span class="stat-icon">❤️</span>
+                            <span>15.7K</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">💬</span>
+                            <span>423</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">🔄</span>
+                            <span>2.1K</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card" data-verified="true" data-no-ai="true" onclick="playVideoModal(this)">
+                <div class="video-thumbnail">
+                    <div class="video-placeholder">🏀</div>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-author">
+                        <div class="author-avatar">SH</div>
+                        <div>
+                            <div class="author-name">
+                                @sportshighlights 
+                                <span class="badge badge-verified">✓</span>
+                                <span class="badge badge-no-ai">🚫 No AI</span>
+                            </div>
+                            <div class="author-time">6 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="video-caption">Insane buzzer beater! 🏀 #basketball #clutch</div>
+                    <div class="video-stats">
+                        <span class="stat">
+                            <span class="stat-icon">❤️</span>
+                            <span>28.2K</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">💬</span>
+                            <span>891</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">🔄</span>
+                            <span>5.6K</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card" data-verified="false" data-no-ai="true" onclick="playVideoModal(this)">
+                <div class="video-thumbnail">
+                    <div class="video-placeholder">🍕</div>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-author">
+                        <div class="author-avatar">FC</div>
+                        <div>
+                            <div class="author-name">
+                                @foodcreator
+                                <span class="badge badge-no-ai">🚫 No AI</span>
+                            </div>
+                            <div class="author-time">4 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="video-caption">Pizza perfection in 6 seconds 🍕 #foodie</div>
+                    <div class="video-stats">
+                        <span class="stat">
+                            <span class="stat-icon">❤️</span>
+                            <span>11.4K</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">💬</span>
+                            <span>198</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">🔄</span>
+                            <span>876</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recording Modal -->
+    <div class="modal" id="recordingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Record Your Vine</h2>
+                <button class="close-btn" onclick="closeRecording()">×</button>
+            </div>
+            <div class="recording-preview">
+                <video id="previewVideo" autoplay muted playsinline></video>
+            </div>
+            <div class="timer" id="timer">6.0</div>
+            <div class="recording-controls">
+                <button class="btn btn-primary" onclick="startRecording()" id="recordBtn">
+                    🔴 Start Recording
+                </button>
+                <button class="btn btn-secondary" onclick="stopRecording()" id="stopBtn" style="display:none;">
+                    ⏹️ Stop
+                </button>
+                <button class="btn btn-secondary" onclick="closeRecording()">
+                    ❌ Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div style="font-size: 1.5rem;">✅</div>
+        <div style="font-weight: 600;">Vine uploaded successfully!</div>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div class="video-player-modal" id="videoPlayerModal">
+        <div class="video-player-container">
+            <button class="player-close" onclick="closeVideoPlayer()">×</button>
+            <video id="playerVideo" loop autoplay playsinline></video>
+            <div class="player-info">
+                <div class="player-caption" id="playerCaption">Video caption goes here</div>
+                <div class="player-actions">
+                    <button class="player-action" onclick="likeVideo()">
+                        <span class="player-action-icon">❤️</span>
+                        <span id="playerLikes">12.5K</span>
+                    </button>
+                    <button class="player-action" onclick="commentVideo()">
+                        <span class="player-action-icon">💬</span>
+                        <span id="playerComments">342</span>
+                    </button>
+                    <button class="player-action" onclick="shareVideo()">
+                        <span class="player-action-icon">🔄</span>
+                        <span id="playerShares">1.2K</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = 'http://localhost:3000/api';
+        
+        let mediaRecorder;
+        let recordedChunks = [];
+        let stream;
+        let recordingInterval;
+        let timeLeft = 6;
+        let allVideos = [];
+        let currentVideoElement = null;
+        let currentVideoId = null;
+
+        // Initialize - Load videos from server
+        window.addEventListener('DOMContentLoaded', function() {
+            loadVideosFromServer();
+            // Refresh videos every 10 seconds to get new uploads
+            setInterval(loadVideosFromServer, 10000);
+        });
+
+        // Load videos from server
+        async function loadVideosFromServer() {
+            try {
+                const response = await fetch(`${API_BASE}/videos`);
+                if (response.ok) {
+                    allVideos = await response.json();
+                    renderAllVideos();
+                    updateVideoCount();
+                }
+            } catch (error) {
+                console.error('Error loading videos:', error);
+                showNotification('⚠️ Could not connect to server. Make sure the server is running!');
+            }
+        }
+
+        // Render all videos to grid
+        function renderAllVideos() {
+            const grid = document.getElementById('videoGrid');
+            
+            // Clear existing user videos (keep sample videos)
+            const existingVideos = grid.querySelectorAll('[data-user-video="true"]');
+            existingVideos.forEach(v => v.remove());
+            
+            // Add all videos from server
+            allVideos.forEach(video => {
+                const card = createVideoCard(video);
+                grid.insertBefore(card, grid.firstChild);
+            });
+            
+            applyFilters();
+        }
+
+        // Create video card element
+        function createVideoCard(video) {
+            const card = document.createElement('div');
+            card.className = 'video-card';
+            card.setAttribute('data-verified', video.verified ? 'true' : 'false');
+            card.setAttribute('data-no-ai', video.noAI ? 'true' : 'false');
+            card.setAttribute('data-video-id', video.id);
+            card.setAttribute('data-has-video', 'true');
+            card.setAttribute('data-user-video', 'true');
+            card.onclick = function() { playVideoModal(this); };
+            
+            const timeAgo = getTimeAgo(new Date(video.timestamp));
+            
+            card.innerHTML = `
+                <div class="video-thumbnail">
+                    <video src="${API_BASE.replace('/api', '')}${video.videoUrl}" muted loop></video>
+                    <div class="play-overlay">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-author">
+                        <div class="author-avatar">${video.username.substring(0, 2).toUpperCase()}</div>
+                        <div>
+                            <div class="author-name">
+                                @${video.username}
+                                ${video.verified ? '<span class="badge badge-verified">✓</span>' : ''}
+                                ${video.noAI ? '<span class="badge badge-no-ai">🚫 No AI</span>' : ''}
+                            </div>
+                            <div class="author-time">${timeAgo}</div>
+                        </div>
+                    </div>
+                    <div class="video-caption">${video.caption || 'New vine! 🎬'}</div>
+                    <div class="video-stats">
+                        <span class="stat">
+                            <span class="stat-icon">❤️</span>
+                            <span class="like-count">${formatCount(video.likes)}</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">💬</span>
+                            <span class="comment-count">${formatCount(video.comments)}</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">🔄</span>
+                            <span class="share-count">${formatCount(video.shares)}</span>
+                        </span>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Format count (1234 -> 1.2K)
+        function formatCount(num) {
+            if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toString();
+        }
+
+        // File upload handling
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                if (!file.type.startsWith('video/')) {
+                    alert('Please upload a video file!');
+                    return;
+                }
+                handleVideoUpload(file);
+            }
+        });
+
+        // Handle video upload
+        async function handleVideoUpload(file) {
+            showUploadProgress();
+            
+            const formData = new FormData();
+            formData.append('video', file);
+            formData.append('caption', prompt('Add a caption (optional):') || '');
+            formData.append('noAI', 'true');
+            formData.append('username', localStorage.getItem('username') || 'anonymous');
+            
+            try {
+                // Simulate progress
+                let progress = 0;
+                const progressInterval = setInterval(() => {
+                    progress += 5;
+                    if (progress <= 90) {
+                        document.getElementById('progressFill').style.width = progress + '%';
+                    }
+                }, 100);
+                
+                const response = await fetch(`${API_BASE}/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                clearInterval(progressInterval);
+                document.getElementById('progressFill').style.width = '100%';
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    hideUploadProgress();
+                    showNotification('✅ Vine uploaded and now PUBLIC!');
+                    
+                    // Reload videos to show the new one
+                    await loadVideosFromServer();
+                    
+                    document.getElementById('fileInput').value = '';
+                } else {
+                    throw new Error('Upload failed');
+                }
+            } catch (error) {
+                hideUploadProgress();
+                console.error('Upload error:', error);
+                showNotification('❌ Upload failed. Make sure server is running!');
+            }
+        }
+
+        function showUploadProgress() {
+            document.getElementById('uploadProgress').classList.add('active');
+            document.getElementById('progressFill').style.width = '0%';
+        }
+
+        function hideUploadProgress() {
+            setTimeout(() => {
+                document.getElementById('uploadProgress').classList.remove('active');
+            }, 500);
+        }
+
+        function openUpload() {
+            document.getElementById('fileInput').click();
+        }
+
+        // Recording functions
+        function openRecording() {
+            const modal = document.getElementById('recordingModal');
+            modal.classList.add('active');
+            
+            navigator.mediaDevices.getUserMedia({ 
+                video: { 
+                    facingMode: 'user',
+                    width: { ideal: 720 },
+                    height: { ideal: 1280 }
+                }, 
+                audio: true 
+            })
+            .then(mediaStream => {
+                stream = mediaStream;
+                document.getElementById('previewVideo').srcObject = stream;
+            })
+            .catch(err => {
+                console.error('Camera access denied:', err);
+                alert('Camera access is required to record a Vine!');
+                closeRecording();
+            });
+        }
+
+        function closeRecording() {
+            const modal = document.getElementById('recordingModal');
+            modal.classList.remove('active');
+            
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            
+            resetRecording();
+        }
+
+        function startRecording() {
+            recordedChunks = [];
+            timeLeft = 6;
+            
+            const options = { mimeType: 'video/webm;codecs=vp9' };
+            try {
+                mediaRecorder = new MediaRecorder(stream, options);
+            } catch (e) {
+                mediaRecorder = new MediaRecorder(stream);
+            }
+            
+            mediaRecorder.addEventListener('dataavailable', e => {
+                if (e.data.size > 0) {
+                    recordedChunks.push(e.data);
+                }
+            });
+            
+            mediaRecorder.addEventListener('stop', async () => {
+                const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                
+                // Convert to base64 and upload
+                const reader = new FileReader();
+                reader.onload = async function(e) {
+                    const videoData = e.target.result;
+                    
+                    try {
+                        const caption = prompt('Add a caption (optional):') || '';
+                        const username = localStorage.getItem('username') || 'anonymous';
+                        
+                        const response = await fetch(`${API_BASE}/upload-base64`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                videoData,
+                                caption,
+                                noAI: true,
+                                username
+                            })
+                        });
+                        
+                        if (response.ok) {
+                            showNotification('✅ Vine recorded and now PUBLIC!');
+                            await loadVideosFromServer();
+                        } else {
+                            throw new Error('Upload failed');
+                        }
+                    } catch (error) {
+                        console.error('Upload error:', error);
+                        showNotification('❌ Upload failed. Make sure server is running!');
+                    }
+                };
+                reader.readAsDataURL(blob);
+                
+                closeRecording();
+            });
+            
+            mediaRecorder.start();
+            
+            // Update UI
+            document.getElementById('recordBtn').style.display = 'none';
+            document.getElementById('stopBtn').style.display = 'inline-block';
+            document.getElementById('timer').classList.add('recording');
+            
+            // Start countdown
+            recordingInterval = setInterval(() => {
+                timeLeft -= 0.1;
+                document.getElementById('timer').textContent = timeLeft.toFixed(1);
+                
+                if (timeLeft <= 0) {
+                    stopRecording();
+                }
+            }, 100);
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+            }
+            
+            clearInterval(recordingInterval);
+            resetRecording();
+        }
+
+        function resetRecording() {
+            document.getElementById('recordBtn').style.display = 'inline-block';
+            document.getElementById('stopBtn').style.display = 'none';
+            document.getElementById('timer').textContent = '6.0';
+            document.getElementById('timer').classList.remove('recording');
+            timeLeft = 6;
+        }
+
+        // Video player functions
+        function playVideoModal(card) {
+            const modal = document.getElementById('videoPlayerModal');
+            const video = document.getElementById('playerVideo');
+            const caption = card.querySelector('.video-caption').textContent;
+            const videoId = card.getAttribute('data-video-id');
+            
+            currentVideoId = videoId;
+            
+            // Set caption
+            document.getElementById('playerCaption').textContent = caption;
+            
+            // Set stats
+            const likesEl = card.querySelector('.like-count');
+            const commentsEl = card.querySelector('.comment-count');
+            const sharesEl = card.querySelector('.share-count');
+            
+            if (likesEl) document.getElementById('playerLikes').textContent = likesEl.textContent;
+            if (commentsEl) document.getElementById('playerComments').textContent = commentsEl.textContent;
+            if (sharesEl) document.getElementById('playerShares').textContent = sharesEl.textContent;
+            
+            // Get video URL
+            if (card.hasAttribute('data-has-video')) {
+                const thumbnailVideo = card.querySelector('.video-thumbnail video');
+                if (thumbnailVideo) {
+                    video.src = thumbnailVideo.src;
+                    modal.classList.add('active');
+                    video.play();
+                    currentVideoElement = video;
+                } else {
+                    alert('This is a demo video. Upload your own to see it play!');
+                }
+            } else {
+                alert('This is a demo video. Upload your own to see it play!');
+            }
+        }
+
+        function closeVideoPlayer() {
+            const modal = document.getElementById('videoPlayerModal');
+            const video = document.getElementById('playerVideo');
+            
+            modal.classList.remove('active');
+            video.pause();
+            video.src = '';
+            currentVideoElement = null;
+            currentVideoId = null;
+        }
+
+        // Close player when clicking outside
+        document.getElementById('videoPlayerModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoPlayer();
+            }
+        });
+
+        // Player action functions
+        async function likeVideo() {
+            if (!currentVideoId) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/videos/${currentVideoId}/like`, {
+                    method: 'POST'
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    document.getElementById('playerLikes').textContent = formatCount(result.likes);
+                    showNotification('Liked! ❤️');
+                    
+                    // Update the card
+                    const card = document.querySelector(`[data-video-id="${currentVideoId}"]`);
+                    if (card) {
+                        const likeCount = card.querySelector('.like-count');
+                        if (likeCount) likeCount.textContent = formatCount(result.likes);
+                    }
+                }
+            } catch (error) {
+                console.error('Like error:', error);
+            }
+        }
+
+        async function commentVideo() {
+            if (!currentVideoId) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/videos/${currentVideoId}/comment`, {
+                    method: 'POST'
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    document.getElementById('playerComments').textContent = formatCount(result.comments);
+                    showNotification('Comment added! 💬');
+                    
+                    const card = document.querySelector(`[data-video-id="${currentVideoId}"]`);
+                    if (card) {
+                        const commentCount = card.querySelector('.comment-count');
+                        if (commentCount) commentCount.textContent = formatCount(result.comments);
+                    }
+                }
+            } catch (error) {
+                console.error('Comment error:', error);
+            }
+        }
+
+        async function shareVideo() {
+            if (!currentVideoId) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/videos/${currentVideoId}/share`, {
+                    method: 'POST'
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    document.getElementById('playerShares').textContent = formatCount(result.shares);
+                    showNotification('Shared! 🔄');
+                    
+                    const card = document.querySelector(`[data-video-id="${currentVideoId}"]`);
+                    if (card) {
+                        const shareCount = card.querySelector('.share-count');
+                        if (shareCount) shareCount.textContent = formatCount(result.shares);
+                    }
+                }
+            } catch (error) {
+                console.error('Share error:', error);
+            }
+        }
+
+        // Filter functions
+        function applyFilters() {
+            const noAiFilter = document.getElementById('noAiFilter').checked;
+            const verifiedFilter = document.getElementById('verifiedOnlyFilter').checked;
+            
+            const cards = document.querySelectorAll('.video-card');
+            let visibleCount = 0;
+            
+            cards.forEach(card => {
+                let show = true;
+                
+                if (noAiFilter && card.getAttribute('data-no-ai') !== 'true') {
+                    show = false;
+                }
+                
+                if (verifiedFilter && card.getAttribute('data-verified') !== 'true') {
+                    show = false;
+                }
+                
+                card.style.display = show ? '' : 'none';
+                if (show) visibleCount++;
+            });
+            
+            updateVideoCount(visibleCount);
+        }
+
+        function updateVideoCount(count) {
+            const countElement = document.getElementById('videoCount');
+            if (count === undefined) {
+                const cards = document.querySelectorAll('.video-card');
+                count = Array.from(cards).filter(card => card.style.display !== 'none').length;
+            }
+            countElement.textContent = `Showing ${count} video${count !== 1 ? 's' : ''}`;
+        }
+
+        function switchTab(tab, feedType) {
+            document.querySelectorAll('.feed-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            console.log('Switched to feed:', feedType);
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.querySelector('div:last-child').textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Set username on first visit
+        if (!localStorage.getItem('username')) {
+            const username = prompt('Choose a username:', 'user' + Math.floor(Math.random() * 1000));
+            if (username) {
+                localStorage.setItem('username', username);
+            }
+        }
+
+        // Utility function for timestamps
+        function getTimeAgo(date) {
+            const seconds = Math.floor((new Date() - date) / 1000);
+            
+            if (seconds < 60) return 'just now';
+            if (seconds < 3600) return Math.floor(seconds / 60) + ' minutes ago';
+            if (seconds < 86400) return Math.floor(seconds / 3600) + ' hours ago';
+            return Math.floor(seconds / 86400) + ' days ago';
+        }
+
+        // Prevent accidental page unload during recording
+        window.addEventListener('beforeunload', (e) => {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeVideoPlayer();
+                closeRecording();
+            }
+            if (e.key === ' ' && currentVideoElement) {
+                e.preventDefault();
+                if (currentVideoElement.paused) {
+                    currentVideoElement.play();
+                } else {
+                    currentVideoElement.pause();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

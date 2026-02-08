@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Uploaded videos (don't commit user videos to GitHub)
+uploads/
+*.mp4
+*.webm
+*.mov
+
+# Database (will be created when server runs)
+videos-db.json
+
+# OS Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs
+*.log
+npm-debug.log*
